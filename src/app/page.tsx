@@ -1,0 +1,112 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight, BarChart3, BrainCircuit, Globe2 } from "lucide-react";
+import Link from "next/link";
+
+export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  return (
+    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col relative overflow-hidden">
+      {/* Abstract Animated Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/20 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-600/20 blur-[120px]" />
+      </div>
+
+      <div className="container mx-auto px-6 py-6 relative z-10 flex-1 flex flex-col">
+        {/* Header */}
+        <header className="flex justify-between items-center py-6">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg">
+              <BarChart3 className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-xl font-bold tracking-tight">Bharat-Insight</span>
+          </div>
+          <nav>
+            <Link 
+              href="/dashboard" 
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              Go to Dashboard
+            </Link>
+          </nav>
+        </header>
+
+        {/* Hero Section */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-12">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-sm text-sm font-medium text-blue-400">
+              <Globe2 className="w-4 h-4" />
+              <span>Public Data Reimagined</span>
+            </motion.div>
+
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+              Unlock the Power of <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400">
+                Indian AI Analytics
+              </span>
+            </motion.h1>
+
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              A comprehensive multi-tenant platform tailored for exploring national datasets. Harness the speed of modern web architecture empowered by Gemini AI Insights.
+            </motion.p>
+            
+            <motion.div variants={itemVariants} className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/dashboard" className="w-full sm:w-auto">
+                <button className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-950 rounded-full font-semibold text-lg transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
+                  Explore Dashboard
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
+              <Link href="#features" className="w-full sm:w-auto">
+                <button className="flex items-center justify-center px-8 py-4 bg-slate-900 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 text-slate-300 rounded-full font-semibold text-lg transition-all">
+                  Learn More
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
+          
+          {/* Feature highlights */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-16 w-full"
+          >
+            {[
+              { title: "Multi-Tenant UI", desc: "Seamlessly switch between Health & Agriculture departments.", icon: Globe2, color: "text-blue-400" },
+              { title: "Fast Filtering", desc: "Instantly filter large datasets by State and Year.", icon: BarChart3, color: "text-emerald-400" },
+              { title: "AI Insights", desc: "Receive automated analysis generated by Gemini API.", icon: BrainCircuit, color: "text-purple-400" }
+            ].map((feature, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/50 backdrop-blur-sm text-left hover:bg-slate-800 transition-colors">
+                <feature.icon className={`w-8 h-8 mb-4 ${feature.color}`} />
+                <h3 className="text-xl font-semibold mb-2 text-slate-100">{feature.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </main>
+  );
+}
