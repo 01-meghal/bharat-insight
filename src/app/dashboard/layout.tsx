@@ -4,7 +4,7 @@ import { useAppStore } from "@/store/useAppStore";
 import { BarChart3, BrainCircuit, Globe2, LayoutDashboard, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { department, setDepartment } = useAppStore();
