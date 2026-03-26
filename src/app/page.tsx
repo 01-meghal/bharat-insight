@@ -47,7 +47,7 @@ export default function Home() {
           
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex-1 space-y-8 max-w-2xl relative z-10">
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 uppercase tracking-widest backdrop-blur-md">
-              <Globe2 className="w-3.5 h-3.5" /> Platform v2.0 Live
+              <Globe2 className="w-3.5 h-3.5" /> Analytics Platform
             </motion.div>
 
             <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.1]">
